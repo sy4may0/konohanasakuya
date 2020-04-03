@@ -20,7 +20,7 @@ PORT = os.environ.get("PORT")
 app = Flask(__name__)
 CORS(app)
 
-if os.path.isdir(DISTRIBUTE_REPO):
+if !os.path.isdir(DISTRIBUTE_REPO):
     os.path.mkdir(DISTRIBUTE_REPO)
 
 mongoClient = MongoClient(os.environ.get('MONGO_URI'))
