@@ -6,6 +6,7 @@ import base64
 from pymongo import MongoClient
 from flask import Flask, make_response, request, jsonify
 from flask_cors import CORS 
+from waitress import serve
 
 from WeeklyReport import WeeklyReport
 
@@ -13,6 +14,7 @@ dotenv.load_dotenv()
 
 DISTRIBUTE_REPO =  os.path.dirname(__file__) + '/public'
 DISTRIBUTE_URL = os.environ.get("URL")
+HOST = os.environ.get("HOST")
 PORT = os.environ.get("PORT")
 
 app = Flask(__name__)
@@ -61,4 +63,4 @@ def download_excel(filename):
     return response
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=PORT)
+    serve(app, host=HOST, port=PORT)
