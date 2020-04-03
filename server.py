@@ -12,7 +12,7 @@ from WeeklyReport import WeeklyReport
 
 dotenv.load_dotenv()
 
-DISTRIBUTE_REPO =  os.path.dirname(__file__) + '/public'
+DISTRIBUTE_REPO = os.path.dirname(os.path.abspath(__file__)) + '/public'
 DISTRIBUTE_URL = os.environ.get("URL")
 HOST = os.environ.get("HOST")
 PORT = os.environ.get("PORT")
@@ -20,8 +20,8 @@ PORT = os.environ.get("PORT")
 app = Flask(__name__)
 CORS(app)
 
-if !os.path.isdir(DISTRIBUTE_REPO):
-    os.path.mkdir(DISTRIBUTE_REPO)
+if not os.path.isdir(DISTRIBUTE_REPO):
+    os.mkdir(DISTRIBUTE_REPO)
 
 mongoClient = MongoClient(os.environ.get('MONGO_URI'))
 
