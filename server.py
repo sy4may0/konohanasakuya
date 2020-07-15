@@ -27,7 +27,8 @@ mongoClient = MongoClient(os.environ.get('MONGO_URI'))
 
 #
 # {
-#   'user': '唐澤貴洋'
+#   'user': '唐澤貴洋',
+#   'filename': '唐澤貴洋.xlsx',
 #   'achievements': [{}...]
 # }
 #
@@ -42,7 +43,7 @@ def build_excel():
     userNameText = userData['text']
 
     filename = base64.urlsafe_b64encode(
-                    data['user'].encode('utf-8')
+                    data['filename'].encode('utf-8')
                ).decode()
     distribute_path = os.path.join(DISTRIBUTE_REPO, filename)
 
