@@ -3,6 +3,7 @@ import json
 import dotenv
 import os
 import base64
+import urllib.parse
 from pymongo import MongoClient
 from flask import Flask, make_response, request, jsonify
 from flask_cors import CORS 
@@ -61,7 +62,9 @@ def download_excel(filename):
     response.data = open(distribute_path, 'rb').read()
 
     downloadFileName = base64.urlsafe_b64decode(filename).decode('utf-8') + '.xlsx'
-    response.headers['Content-Disposition'] = 'attachment; filename=' + downloadFileName
+    response.headers['Content-Disposition'] = \
+            "attachment;filename*=utf-8''" + \
+            urllib.parse.quote(downloadFileName)
 
     response.mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     return response
