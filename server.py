@@ -61,7 +61,7 @@ def download_excel(filename):
     distribute_path = os.path.join(DISTRIBUTE_REPO, filename)
     response.data = open(distribute_path, 'rb').read()
 
-    downloadFileName = base64.urlsafe_b64decode(filename).decode('utf-8') + '.xlsx'
+    downloadFileName = base64.urlsafe_b64decode(filename).decode('utf-8')
     response.headers['Content-Disposition'] = \
             "attachment;filename*=utf-8''" + \
             urllib.parse.quote(downloadFileName)
